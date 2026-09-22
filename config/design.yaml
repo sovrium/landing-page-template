@@ -4,7 +4,7 @@
 #
 # TWO THINGS THIS FILE USED TO GET WRONG
 #
-# 1. Most of the palette was inert. `theme.colors` accepts any kebab-case key,
+# 1. Most of the palette was inert. `design.colors` accepts any kebab-case key,
 #    but only the keys in `COLOR_TO_SV_TOKEN`
 #    (src/infrastructure/css/theme/theme-generators.ts) emit the `--sv-*`
 #    platform tokens that every prestyled island already consumes. Everything
@@ -61,29 +61,30 @@ darkColors:
   secondary: '#a78bfa'
   gray-50: '#1f1713'
 
-fonts:
-  sans:
-    family: IBM Plex Sans Variable
-    fallback: "'IBM Plex Sans', system-ui, -apple-system, sans-serif"
-    weights: [400, 500, 600, 700]
-    size: 16px
-    lineHeight: '1.6'
-  heading:
-    family: IBM Plex Sans Variable
-    fallback: "'IBM Plex Sans', system-ui, -apple-system, sans-serif"
-    weights: [600, 700, 800]
-    size: 48px
-    lineHeight: '1.1'
-    letterSpacing: '-0.02em'
+typeScale:
+  families:
+    sans:
+      family: IBM Plex Sans Variable
+      fallback: "'IBM Plex Sans', system-ui, -apple-system, sans-serif"
+      weights: [400, 500, 600, 700]
+      size: 16px
+      lineHeight: '1.6'
+    heading:
+      family: IBM Plex Sans Variable
+      fallback: "'IBM Plex Sans', system-ui, -apple-system, sans-serif"
+      weights: [600, 700, 800]
+      size: 48px
+      lineHeight: '1.1'
+      letterSpacing: '-0.02em'
 
-borderRadius:
+radius:
   sm: 0.25rem
   md: 0.5rem
   lg: 0.75rem
   xl: 1rem
   full: 9999px
 
-shadows:
+elevation:
   sm: 0 1px 2px 0 rgb(0 0 0 / 0.05)
   md: 0 4px 6px -1px rgb(0 0 0 / 0.1)
   lg: 0 10px 15px -3px rgb(0 0 0 / 0.1)
