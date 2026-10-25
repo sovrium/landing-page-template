@@ -5,8 +5,6 @@
 Built with [Sovrium](https://sovrium.com) — a configuration-as-code interpreter: one config
 file in, a complete self-hosted web application out.
 
-[![Deploy on Scalingo](https://cdn.scalingo.com/deploy/button.svg)](https://dashboard.scalingo.com/create/app?source=https://github.com/sovrium/landing-page-template)
-
 ## Use this template
 
 Click **Use this template** on GitHub to copy this app into your own repository (clean
@@ -41,27 +39,36 @@ application code. The words are in `config/languages.yaml`; rename the product t
 ## Run locally
 
 ```bash
+curl -fsSL https://sovrium.com/install | sh
+cp .env.example .env
 sovrium start app.yaml --watch
 ```
 
-Zero-config: embedded SQLite, local file storage. Set `AUTH_ADMIN_EMAIL` and
-`AUTH_ADMIN_PASSWORD` (see [`.env.example`](./.env.example)) to read the requests in the
-admin. The sharing cards are sent as full addresses on the host the site is served at, so
-nothing needs replacing before you deploy.
+Zero-config: embedded SQLite, local file storage, no variable required to boot.
+[`.env.example`](./.env.example) lists the optional ones this app reads.
+The first administrator comes from `AUTH_ADMIN_EMAIL` and `AUTH_ADMIN_PASSWORD` on the
+first start, or from `sovrium admin create <email>`.
+`--watch` reloads the app each time you save a config file.
 
 ## Deploy
 
-The **Deploy on Scalingo** button above provisions the app with a PostgreSQL addon
-(Scalingo's filesystem is ephemeral — the database keeps your data across deploys; file
-uploads are stored in Postgres too). Secrets are generated automatically; you only fill in
-`BASE_URL`. Any other host works the same way: run the `sovrium` binary with this config
-(see the [deployment guides](https://sovrium.com/en/docs/installation)).
+Ship it to Sovrium Cloud from this directory: sign in once, then deploy. The CLI finds or
+creates the app it deploys to, checks the variables it needs, bundles and uploads it, and
+ends only once the app answers at its address.
+
+```bash
+sovrium login
+sovrium deploy
+```
+
+Any other host works the same way: run the `sovrium` binary with this config (see the
+[deployment guides](https://sovrium.com/en/docs/installation)).
 
 ## About this repository
 
 This repository is **auto-published from the
 [Sovrium monorepo](https://github.com/sovrium/sovrium)** on every release
-(source: [`templates/landing-page`](https://github.com/sovrium/sovrium/tree/main/templates/landing-page)).
+(source: [`src/templates/landing-page`](https://github.com/sovrium/sovrium/tree/main/src/templates/landing-page)).
 Issues are welcome here; please send code contributions upstream to the monorepo so the
 template stays in sync with the engine. The pinned engine release lives in
 `.sovrium-version`.
